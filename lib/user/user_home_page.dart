@@ -32,7 +32,7 @@ class UserHomaPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DrawerHeader(
-                  child: Text("Voting App version 1.1"),
+                  child: Text("admin app of doctor registration 1.1"),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -85,33 +85,33 @@ class UserHomaPage extends StatelessWidget {
                     ]),
                 height: 20,
                 // color: Colors.red,
-                child: Center(child: Text('Vote now')),
+                child: Center(child: Text('Todays Appoinment')),
               ),
             ),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Result(
-                              isAdmin: false,
-                            )));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 10,
-                          spreadRadius: 5)
-                    ]),
-                height: 20,
-                // color: Colors.red,
-                child: Center(child: Text('Result')),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => const Result(
+            //                   isAdmin: false,
+            //                 )));
+            //   },
+            //   child: Container(
+            //     decoration: BoxDecoration(
+            //         color: Colors.white,
+            //         borderRadius: BorderRadius.circular(20),
+            //         boxShadow: [
+            //           BoxShadow(
+            //               color: Colors.black.withOpacity(0.2),
+            //               blurRadius: 10,
+            //               spreadRadius: 5)
+            //         ]),
+            //     height: 20,
+            //     // color: Colors.red,
+            //     child: Center(child: Text('Result')),
+            //   ),
+            // ),
             // InkWell(
             //   onTap: () {
             //     Navigator.push(

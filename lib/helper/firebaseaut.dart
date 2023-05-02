@@ -24,9 +24,10 @@ class Helper {
     required BuildContext context,
     required String password,
     required String name,
+    required String specialisation,
     required String adhar,
     required String file_path,
-    required String selfie_path,
+    // required String selfie_path,
     // required String file_name,
   }) async {
     try {
@@ -36,13 +37,14 @@ class Helper {
           //       required String file_path,
           // required String file_name,
           // imgurl: imgurl,
+          specialisation: specialisation,
           adhar: adhar,
           email: email,
           name: name,
           password: password);
       Future.wait([
         CloudStorageHelper().UploadFile(file_path: file_path),
-        CloudStorageHelper().UploadSelfie(file_path: selfie_path)
+        // CloudStorageHelper().UploadSelfie(file_path: selfie_path)
       ]);
 
       _firebaseAuth.signOut();

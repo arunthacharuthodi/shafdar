@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "Voting App" "\0"
+            VALUE "FileDescription", "Doc Admin" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "Voting App" "\0"
+            VALUE "InternalName", "Doc Admin" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "notes_app.exe" "\0"
-            VALUE "ProductName", "Voting App" "\0"
+            VALUE "ProductName", "Doc Admin" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

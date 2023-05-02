@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const Center(
                 child: Text(
-              'Login in to your account',
+              'Login in to Doctor account',
               style: TextStyle(
                   fontSize: 24,
                   color: Colors.white,

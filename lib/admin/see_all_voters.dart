@@ -19,7 +19,7 @@ class _VotersListState extends State<VotersList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Voters List '),
+          title: const Text('Doctor List '),
         ),
         body: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
@@ -44,7 +44,8 @@ class _VotersListState extends State<VotersList> {
               return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) => User(
-                  selfie_url: snapshot.data!.docs[index]['selfie_url'] ?? "",
+                  specialisation: snapshot.data!.docs[index]['specialisation'],
+                  // selfie_url: snapshot.data!.docs[index]['selfie_url'] ?? "",
                   onpressedreject: () {
                     String id = snapshot.data!.docs[index].id;
                     FirebaseFirestore.instance
@@ -54,7 +55,7 @@ class _VotersListState extends State<VotersList> {
                   },
                   isAdmin: snapshot.data!.docs[index]['isAproved'],
                   name: snapshot.data!.docs[index]['name'],
-                  adhar: snapshot.data!.docs[index]['adhar'],
+                  adhar: snapshot.data!.docs[index]['doc_id'],
                   email: snapshot.data!.docs[index]['email'],
                   img_url: snapshot.data!.docs[index]['imgurl'] ?? "",
                   onpressed: () {
@@ -75,6 +76,7 @@ class User extends StatelessWidget {
   final String name;
   final String adhar;
   final String email;
+  final String specialisation;
   final String img_url;
   final String selfie_url;
   final void Function()? onpressed;
@@ -86,6 +88,7 @@ class User extends StatelessWidget {
       required this.isAdmin,
       required this.img_url,
       required this.name,
+      required this.specialisation,
       required this.adhar,
       required this.email,
       required this.onpressed,
@@ -120,7 +123,14 @@ class User extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Adhar : ${adhar}',
+                  'Doc ID : ${adhar}',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'specialisation: ${specialisation}',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
@@ -142,20 +152,20 @@ class User extends StatelessWidget {
                                     print("dismissed");
                                   });
                                 },
-                                child: Text("Votter ID"))),
+                                child: Text("Doctor Certificate"))),
                       ),
-                      SizedBox(
-                          height: 30,
-                          child: ElevatedButton(
-                              onPressed: () async {
-                                final imageProvider =
-                                    Image.network(selfie_url).image;
-                                showImageViewer(context, imageProvider,
-                                    onViewerDismissed: () {
-                                  print("dismissed");
-                                });
-                              },
-                              child: Text("Image"))),
+                      // SizedBox(
+                      //     height: 30,
+                      //     child: ElevatedButton(
+                      //         onPressed: () async {
+                      //           final imageProvider =
+                      //               Image.network(selfie_url).image;
+                      //           showImageViewer(context, imageProvider,
+                      //               onViewerDismissed: () {
+                      //             print("dismissed");
+                      //           });
+                      //         },
+                      //         child: Text("Image"))),
                     ],
                   ),
                 ),

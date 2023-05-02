@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DrawerHeader(
-                  child: Text("Voting App version 1.1"),
+                  child: Text("Doc Admin App version 1.1"),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: ListTile(
                 title: const Text(
-                  'See all voters',
+                  'See all Doctor Requests',
                   style: TextStyle(
                     color: Colors.white,
                     // color: Colors.white,
@@ -103,48 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            Container(
-              margin: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: ListTile(
-                title: const Text(
-                  'Add Election',
-                  style: TextStyle(color: Colors.white),
-                ),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.white,
-                ),
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AddElection()));
-                },
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: ListTile(
-                title: const Text(
-                  'Add Candidate',
-                  style: TextStyle(color: Colors.white),
-                ),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.white,
-                ),
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => ShowElections()));
-                },
-              ),
-            ),
+
             // Container(
             //   margin: const EdgeInsets.all(15),
             //   decoration: BoxDecoration(
@@ -152,37 +111,79 @@ class _HomeScreenState extends State<HomeScreen> {
             //     borderRadius: BorderRadius.circular(10),
             //   ),
             //   child: ListTile(
-            //     title: const Text('See all Elections'),
-            //     trailing: const Icon(Icons.arrow_forward_ios),
+            //     title: const Text(
+            //       'Add Election',
+            //       style: TextStyle(color: Colors.white),
+            //     ),
+            //     trailing: const Icon(
+            //       Icons.arrow_forward_ios,
+            //       color: Colors.white,
+            //     ),
             //     onTap: () {
-            //       Navigator.of(context).push(MaterialPageRoute(
-            //           builder: (context) => SeeAllElections()));
+            //       Navigator.of(context).push(
+            //           MaterialPageRoute(builder: (context) => AddElection()));
             //     },
             //   ),
             // ),
-            Container(
-              margin: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: ListTile(
-                title: const Text(
-                  'Results',
-                  style: TextStyle(color: Colors.white),
-                ),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.white,
-                ),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Result(
-                            isAdmin: true,
-                          )));
-                },
-              ),
-            ),
+            // Container(
+            //   margin: const EdgeInsets.all(15),
+            //   decoration: BoxDecoration(
+            //     color: Colors.blue,
+            //     borderRadius: BorderRadius.circular(10),
+            //   ),
+            //   child: ListTile(
+            //     title: const Text(
+            //       'Add Candidate',
+            //       style: TextStyle(color: Colors.white),
+            //     ),
+            //     trailing: const Icon(
+            //       Icons.arrow_forward_ios,
+            //       color: Colors.white,
+            //     ),
+            //     onTap: () {
+            //       Navigator.of(context).push(
+            //           MaterialPageRoute(builder: (context) => ShowElections()));
+            //     },
+            //   ),
+            // ),
+            // // Container(
+            // //   margin: const EdgeInsets.all(15),
+            // //   decoration: BoxDecoration(
+            // //     color: Colors.blue,
+            // //     borderRadius: BorderRadius.circular(10),
+            // //   ),
+            // //   child: ListTile(
+            // //     title: const Text('See all Elections'),
+            // //     trailing: const Icon(Icons.arrow_forward_ios),
+            // //     onTap: () {
+            // //       Navigator.of(context).push(MaterialPageRoute(
+            // //           builder: (context) => SeeAllElections()));
+            // //     },
+            // //   ),
+            // // ),
+            // Container(
+            //   margin: const EdgeInsets.all(15),
+            //   decoration: BoxDecoration(
+            //     color: Colors.blue,
+            //     borderRadius: BorderRadius.circular(10),
+            //   ),
+            //   child: ListTile(
+            //     title: const Text(
+            //       'Results',
+            //       style: TextStyle(color: Colors.white),
+            //     ),
+            //     trailing: const Icon(
+            //       Icons.arrow_forward_ios,
+            //       color: Colors.white,
+            //     ),
+            //     onTap: () {
+            //       Navigator.of(context).push(MaterialPageRoute(
+            //           builder: (context) => Result(
+            //                 isAdmin: true,
+            //               )));
+            //     },
+            //   ),
+            // ),
           ],
         ));
   }

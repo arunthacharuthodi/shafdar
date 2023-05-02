@@ -22,6 +22,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  String dropdownValue = 'General';
   final _emailController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -69,7 +70,7 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
             const Center(
                 child: Text(
-              'Sign in to your account',
+              'Doctor Registration',
               style: TextStyle(
                   fontSize: 24,
                   color: Colors.white,
@@ -225,7 +226,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   width: 20,
                                 ),
                                 Text(
-                                  "Adhar Number",
+                                  "your Doctor ID Number",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -243,12 +244,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               ],
                             ),
                             CustomTextField(
-                              is_Adhar: true,
+                              is_Adhar: false,
                               is_Name: false,
 
                               isPassword: false,
                               textFieldController: _AsdharController,
-                              hintText: 'Adhar Card Number',
+                              hintText: 'Doctor ID Number',
                               isVisible: false,
                               // suffixIcon: const Icon(
                               //   Icons.visibility_off,
@@ -264,7 +265,91 @@ class _SignupScreenState extends State<SignupScreen> {
                         width: 20,
                       ),
                       Text(
-                        "Proof of Adhar Card",
+                        "Select Specialization",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(
+                        "*",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Color(0xffD9D9D9),
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: DropdownButton<String>(
+                        // focusColor: Colors.red,
+                        // iconEnabledColor: true,
+                        underline: Container(
+                          height: 0,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                        dropdownColor: Colors.white,
+                        value: dropdownValue,
+                        // borderRadius: BorderRadius.circular(8),
+                        icon: Icon(Icons.arrow_drop_down_rounded),
+                        isExpanded: true,
+                        iconSize: 24,
+                        elevation: 16,
+
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple),
+                        // underline: Container(
+                        //   height: 2,
+                        //   color: Colors.deepPurpleAccent,
+                        // ),
+                        onChanged: (value) {
+                          setState(() {
+                            dropdownValue = value!;
+                          });
+                        },
+
+                        items: <String>[
+                          'General',
+                          'Skin',
+                          'ENT',
+                          'Cough and Fever',
+                          'Gynaecology',
+                          'Dentist'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "Proof of Certificate",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -298,54 +383,6 @@ class _SignupScreenState extends State<SignupScreen> {
                       if (filePath != null)
                         Text(
                           'Selected file: ${filePath.split('/').last}',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "Take a selfie of yours",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                      Text(
-                        "*",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () =>
-                                Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => CameraPage(),
-                            )),
-                            child: Text('Take Selfie'),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      if (imageFile != null)
-                        Text(
-                          'Selected file: ${imageFile}',
                           style: TextStyle(color: Colors.white),
                         ),
                     ],
@@ -459,27 +496,22 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       );
       return;
-    } else if (imageFile == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Selfie required'),
-        ),
-      );
-      return;
     } else if (_AsdharController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('adhar Number is required'),
+          content: Text('doctor id Number is required'),
         ),
       );
       return;
-    } else if (_AsdharController.text.length != 12) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Adhar should be 12 numbers'),
-        ),
-      );
-    } else if (_passwordController.text != _passWordConfirmController.text) {
+    }
+    // else if (_AsdharController.text.length != 12) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(
+    //       content: Text('doctor certificate should be 12 numbers'),
+    //     ),
+    //   );
+    // }
+    else if (_passwordController.text != _passWordConfirmController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Password and Confirm Password must be same'),
@@ -497,7 +529,7 @@ class _SignupScreenState extends State<SignupScreen> {
     } else if (filePath == "") {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Select your Adhar Image'),
+          content: Text('Select your doctor certificate Image'),
         ),
       );
     } else {
@@ -511,7 +543,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 // file_name: filePath,
                 context: context,
                 file_path: filePath,
-                selfie_path: imageFile!.path,
+                specialisation: dropdownValue,
+                // selfie_path: imageFile!.path,
                 email: _emailController.text,
                 password: _passwordController.text,
                 adhar: _AsdharController.text,
@@ -522,8 +555,6 @@ class _SignupScreenState extends State<SignupScreen> {
             imageFile = null;
           });
         });
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const NotVerified()));
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(e.message.toString())));

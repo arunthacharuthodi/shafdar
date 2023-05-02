@@ -10,6 +10,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/config/color.dart';
 import 'package:notes_app/user/otp_verification.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VoteNow extends StatefulWidget {
   const VoteNow({super.key});
@@ -19,11 +20,33 @@ class VoteNow extends StatefulWidget {
 }
 
 class _VoteNowState extends State<VoteNow> {
+  void _launchURL(String _meetLink) async {
+    if (await canLaunchUrl(Uri.parse(_meetLink))) {
+      final uri = Uri.parse(_meetLink);
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $_meetLink';
+    }
+  }
+
+  String doc_id = '';
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // init();
+    init();
+    // setState(() {});
+  }
+
+  init() async {
+    final docid = await FirebaseFirestore.instance
+        .collection('user')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    setState(() {
+      doc_id = docid['doc_id'];
+    });
+    print(doc_id);
   }
 
   @override
@@ -32,12 +55,14 @@ class _VoteNowState extends State<VoteNow> {
         backgroundColor: ColorCOnfig().primary_color,
         appBar: AppBar(
           backgroundColor: ColorCOnfig().primary_color,
-          title: const Text('Vote Now'),
+          title: const Text('Appoinments'),
         ),
         body: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection('Elections')
-                .orderBy('end_date', descending: true)
+                .collection('appoinments')
+                .where('doctor', isEqualTo: doc_id)
+                // .orderBy("time_data")
+                // .where("time", isGreaterThan: DateTime.now())
                 .snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -59,31 +84,19 @@ class _VoteNowState extends State<VoteNow> {
                         color: ColorCOnfig().secondary,
                         borderRadius: BorderRadius.circular(10)),
                     child: ListTile(
-                      subtitle: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Start Date : ${DateFormat.yMMMMEEEEd().format(snapshot.data!.docs[index]['start_date'].toDate())}",
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          ),
-                          Text(
-                            "End Date :${DateFormat.yMMMMEEEEd().format(snapshot.data!.docs[index]['end_date'].toDate())}",
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          ),
-                        ],
+                      subtitle: Text(
+                        "Start Date : ${DateFormat.yMMMMEEEEd().format(snapshot.data!.docs[index]['time'].toDate())}",
+                        style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
                       title: Text(
                         snapshot.data!.docs[index]['name'],
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
-                      trailing: BlocUnwanted(
-                        isOver: DateTime.now().isAfter(
-                                snapshot.data!.docs[index]['end_date'].toDate())
-                            ? false
-                            : true,
-                        candidateId: snapshot.data!.docs[index].id,
-                        index: index,
-                        snapshot: snapshot,
+                      trailing: TextButton(
+                        child: Text("start"),
+                        onPressed: () {
+                          _launchURL(snapshot.data!.docs[index]['meet_link']);
+                        },
                       ),
                       // onTap: () {
                       //   Navigator.of(context).push(MaterialPageRoute(

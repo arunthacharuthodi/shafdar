@@ -9,6 +9,7 @@ class FirestoreHelper {
 
   Future<void> updateprofile(
       {required String email,
+      required String specialisation,
       required String password,
       required String name,
       // required String imgurl,
@@ -22,8 +23,10 @@ class FirestoreHelper {
           .doc(_user.uid)
           .set({
             'name': name,
+            'fee': "200",
             'email': email,
-            'adhar': adhar,
+            'specialisation': specialisation,
+            'doc_id': adhar,
             'isAproved': isAproved,
             'isAdmin': isadmin,
             'imgurl': "",
