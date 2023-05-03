@@ -23,6 +23,7 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   String dropdownValue = 'General';
+  String dropdownValue2 = 'Online';
   final _emailController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -340,6 +341,82 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "Consultation Type",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(
+                        "*",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Color(0xffD9D9D9),
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: DropdownButton<String>(
+                        // focusColor: Colors.red,
+                        // iconEnabledColor: true,
+                        underline: Container(
+                          height: 0,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                        dropdownColor: Colors.white,
+                        value: dropdownValue2,
+                        // borderRadius: BorderRadius.circular(8),
+                        icon: Icon(Icons.arrow_drop_down_rounded),
+                        isExpanded: true,
+                        iconSize: 24,
+                        elevation: 16,
+
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple),
+                        // underline: Container(
+                        //   height: 2,
+                        //   color: Colors.deepPurpleAccent,
+                        // ),
+                        onChanged: (value) {
+                          setState(() {
+                            dropdownValue2 = value!;
+                          });
+                        },
+
+                        items: <String>['Online', 'offline']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -544,6 +621,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 context: context,
                 file_path: filePath,
                 specialisation: dropdownValue,
+                videocons: dropdownValue2,
                 // selfie_path: imageFile!.path,
                 email: _emailController.text,
                 password: _passwordController.text,

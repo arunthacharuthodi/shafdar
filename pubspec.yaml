@@ -61,20 +61,20 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/launcher_logo.png"
+  image_path: "assets/images/appicon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
 
 
 flutter_native_splash:
   color: "#ffffff"
-  image: assets\images\logo.png
+  image: assets\images\appicon.png
   # branding: assets\images\logomain.png
   # color_dark: "#121212"
   # image_dark: assets/logo-production.png
   # branding_dark: assets/branding-production.png
 
   android_12:
-    image: assets\images\logo.png
+    image: assets\images\appicon.png
     icon_background_color: "#ffffff"
     # image_dark: assets/logo-production.png
     # icon_background_color_dark: "#121212"

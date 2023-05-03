@@ -12,6 +12,7 @@ class FirestoreHelper {
       required String specialisation,
       required String password,
       required String name,
+      required String videocons,
       // required String imgurl,
       required String adhar}) async {
     try {
@@ -30,6 +31,7 @@ class FirestoreHelper {
             'isAproved': isAproved,
             'isAdmin': isadmin,
             'imgurl': "",
+            'consult_type': videocons,
             'password': password
             // 'img_url': imgurl
           }, SetOptions(merge: true))

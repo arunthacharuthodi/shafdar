@@ -24,6 +24,7 @@ class Helper {
     required BuildContext context,
     required String password,
     required String name,
+    required String videocons,
     required String specialisation,
     required String adhar,
     required String file_path,
@@ -34,6 +35,7 @@ class Helper {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       await FirestoreHelper().updateprofile(
+          videocons: videocons,
           //       required String file_path,
           // required String file_name,
           // imgurl: imgurl,
